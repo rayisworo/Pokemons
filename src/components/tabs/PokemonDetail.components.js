@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { BUTTON__CSS } from '../styles/generalStyles';
 
 const POKEMON_DETAIL_CARD__CSS = {
     'margin':'10px',
@@ -7,7 +8,7 @@ const POKEMON_DETAIL_CARD__CSS = {
     'border':'3px solid #C2D5E4',
     'display':'flex',
     'flexDirection':'column',
-    'boxShadow': '0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.1)'
+    'boxShadow': '5px 10px 20px 0px rgba(0, 0, 0, 0.4)'
 }
 
 const IMAGE_CONTAINER__CSS = {
@@ -29,15 +30,10 @@ const CARD_TITLE__CSS = {
     'alignSelf':'center'
 }
 
-const CATCH_BUTTON__CSS = {
-    'borderRadius':'2rem',
+export const CATCH_BUTTON__CSS = {
+    ...BUTTON__CSS,
     'border':'2px solid #c41a2c',
     'backgroundColor':'#c41a2c',
-    'margin':'20px 50px',
-    'alignSelf':'center',
-    'fontSize':'25px',
-    'fontWeight':'bold',
-    'padding':'10px 60px',
     '&:hover':{
         'backgroundColor':'#c41a2c ',
         'color':'white',
