@@ -10,7 +10,6 @@ class PokemonDetail extends Component{
         super(props);
         this.state = {
             pokemonInfo:{},
-            loading:true,
             showModal:false,
             isSuccess:false,
             warning:null
@@ -45,7 +44,6 @@ class PokemonDetail extends Component{
     catchPokemon = () => {
         const isSuccess = Math.random() < 0.5;
         if(isSuccess){
-            console.log("success");
             this.setState({
                 showModal:true,
                 isSuccess:true
@@ -62,14 +60,15 @@ class PokemonDetail extends Component{
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
         const {pokemonDetail} = this.props;
-        getPokemonInfo(pokemonDetail);
-        const pokemonInfo = JSON.parse(localStorage.getItem('pokemon'));
-        this.setState({
-            pokemonInfo:pokemonInfo,
-            loading:false
-        })
+        getPokemonInfo(pokemonDetail).then((res)=>{
+            const id = _.result(res,'id','');
+            id && this.setState({
+                pokemonInfo:res
+            });
+            !id && alert('Failed getting Pokemon Info, please try again.');
+        });
     }
     
     render(){
@@ -77,7 +76,7 @@ class PokemonDetail extends Component{
         const {pokemonDetail} = this.props;
         const name=_.result(pokemonDetail,'name','');
         const imageUrl = _.result(pokemonDetail,'image','');
-
+        const types = _.result(pokemonInfo,'types',[]);
         return(
             <div>
                 <CapturePokemonModal show={showModal} name={name} submitSavePokemon={this.submitSavePokemon} warning={warning} isSuccess={isSuccess}/>
@@ -86,6 +85,15 @@ class PokemonDetail extends Component{
                     <CardTitle>
                         {name}
                     </CardTitle>
+                    <div>
+                        {
+                            _.map(types, (type) =>
+                                <div>
+                                    {_.result(type,'type.name','')}
+                                </div>
+                            )
+                        }
+                    </div>
                     <Separator/>
                     <CatchButton onClick={()=>this.catchPokemon()}>
                             Catch

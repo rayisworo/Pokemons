@@ -13,7 +13,7 @@ function PokemonPage(){
 
     const {loading, data} = useQuery(GET_POKEMONS,{
         variables:{
-            limit:10
+            limit:100
         }
     });
 
@@ -31,15 +31,6 @@ function PokemonPage(){
         const pokemons = _.result(data,'pokemons.results',[]);
         setPokemons(pokemons);
     }, [data]);
-
-    // const Page = () => {
-    //     return loading ? <Spinner color="blue"/> :
-    //     <PokemonScreen 
-    //         Tab={Tab} 
-    //         handleChangeTab={handleChangeTab}
-    //         activeTab={activeTab}
-    //     />
-    // }
 
     return(
         <div>
