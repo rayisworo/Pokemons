@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { BUTTON__CSS } from '../styles/generalStyles';
+import { BUTTON__CSS, TEXT_INPUT__CSS } from '../styles/generalStyles';
 
 const MODAL_CONTAINER__CSS = {
     'position':'fixed',
@@ -15,7 +15,7 @@ const MODAL_CONTAINER__CSS = {
     'display':'flex',
     'flexDirection':'column',
     'justifyContent':'center',
-    '@media (max-width: 600px)':{
+    '@media (max-width: 800px)':{
         'top':'30%',
         'left':'15%',
         'right':'15%',
@@ -25,25 +25,20 @@ const MODAL_CONTAINER__CSS = {
 const MODAL_TITLE__CSS = {
     'textAlign':'center',
     'marginBottom':'30px',
-    '@media (max-width: 600px)':{
+    '@media (max-width: 800px)':{
         'fontSize':'20px',
     }
 };
 
-const TEXT_INPUT__CSS = {
-    'borderRadius':'2rem',
-    'border':'1px solid rgba(0,0,0,0.4)',
-    'fontSize':'25px',
-    'padding':'5px 20px',
-    '@media (max-width: 600px)':{
-        'fontSize':'20px',
-    }
+const FIELD_CONTAINER__CSS = {
+    'display':'flex',
+    'flexDirection':'column'
 };
 
 const INPUT_LABEL__CSS = {
     'margin':'10px 20px',
     'fontSize':'25px',
-    '@media (max-width: 600px)':{
+    '@media (max-width: 800px)':{
         'margin':'10px 10px',
         'fontSize':'15px',
     }
@@ -62,15 +57,16 @@ const SAVE_BUTTON__CSS = {
         'backgroundColor': '#79AD75',
         'boxShadow': '0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.1)'
     }
-}
+};
 
 const WARNING__CSS = {
     ...INPUT_LABEL__CSS,
     'color':'red'
-}
+};
 
 export const ModalContainer = styled.div`${MODAL_CONTAINER__CSS}`;
 export const ModalTitle = styled.h1`${MODAL_TITLE__CSS}`;
+export const FieldContainer = styled.form`${FIELD_CONTAINER__CSS}`;
 export const TextInput = styled.input`${TEXT_INPUT__CSS}`;
 export const InputLabel = styled.label`${INPUT_LABEL__CSS}`;
 export const SaveButton = styled.button`${SAVE_BUTTON__CSS}`;

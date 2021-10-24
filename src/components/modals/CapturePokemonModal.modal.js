@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ModalContainer, TextInput, InputLabel, ModalTitle, SaveButton, Warning} from './CapturePokemonModal.components';
+import {ModalContainer, TextInput, InputLabel, ModalTitle, SaveButton, Warning, FieldContainer} from './CapturePokemonModal.components';
 
 class CapturePokemonModal extends Component {
     render(){
@@ -12,16 +12,16 @@ class CapturePokemonModal extends Component {
                             {isSuccess ? `Congratulations, you captured a ${name}` : 'Sorry, try again'}
                         </ModalTitle>
                         {isSuccess &&
-                            <div>
+                            <FieldContainer>
                                 <InputLabel>
                                     Give your Pokemon a nickname:
                                 </InputLabel>
-                                <TextInput type="text" placeholder="Nickname" id="nickname"/>
+                                <TextInput type="text" placeholder="Nickname" id="nickname" autoFocus/>
                                 { warning && <Warning> {warning} </Warning> }
-                                <SaveButton onClick={()=>submitSavePokemon()}>
+                                <SaveButton type="submit" onClick={()=>submitSavePokemon()}>
                                     Save
                                 </SaveButton>
-                            </div> 
+                            </FieldContainer> 
                         }
                     </ModalContainer>
                 }

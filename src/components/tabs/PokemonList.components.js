@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import {CARD_INFO__CSS, TEXT_INPUT__CSS} from '../styles/generalStyles';
 
 const POKEMON_CARD__CSS = {
     'borderRadius':'1rem',
@@ -6,9 +7,11 @@ const POKEMON_CARD__CSS = {
     'display':'flex',
     'flexDirection':'column',
     'margin':'5px auto',
-    'flex':'0 0 20%',
+    'padding':'5px',
+    'flex':'0 0 15%',
     'maxWidth':'25%',
-    '@media (max-width: 600px)':{
+    'backgroundColor':'#e5e5e540',
+    '@media (max-width: 800px)':{
         'flex':'0 0 40%',
         'maxWidth':'50%',
     },
@@ -34,18 +37,23 @@ const POKEMON_NAME__CSS = {
     'justifyContent':'center',
     'fontSize':'25px',
     'fontWeight':'bold',
-    '@media (max-width: 600px)':{
+    '@media (max-width: 800px)':{
         'fontSize':'20px'
     },
 }
 
-const CARD_INFO__CSS = {
-    'fontSize':'15px',
-    'fontWeight':'600',
-    'textAlign':'center'
-}
+const SORT_BAR_CONTAINER__CSS = {
+    'margin':'10px',
+    'display':'flex',
+    'flexDirection':'row',
+    'justifyContent':'center',
+    '@media (max-width: 800px)':{
+        'flexWrap':'wrap'
+    },
+};
 
 export const PokemonCard = styled.div`${POKEMON_CARD__CSS}`;
 export const PokemonListContainer = styled.div`${POKEMON_LIST_CONTAINER__CSS}`;
 export const PokemonName = styled.div`${POKEMON_NAME__CSS}`;
 export const CardInfo = styled.label`${CARD_INFO__CSS}`;
+export const SearchBarContainer = styled.div`${SORT_BAR_CONTAINER__CSS}`;

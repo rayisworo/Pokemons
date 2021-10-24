@@ -11,14 +11,14 @@ const MAIN_HEADER__CSS = {
     'flexDirection':'row',
     'padding':'10px',
     'justifyContent':'center',
-    '@media (max-width: 600px)':{
+    '@media (max-width: 800px)':{
         'height':'50px'
     }
 }
 
 const HEADER_IMG__CSS = {
     'height':'80px',
-    '@media (max-width: 600px)':{
+    '@media (max-width: 800px)':{
         'height':'50px'
     }
 }

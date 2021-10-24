@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
-import { PokemonDetailCard, PokemonImage, Separator, CardTitle, CatchButton } from './PokemonDetail.components';
+import { PokemonDetailCard, PokemonImage, Separator, CardTitle, CatchButton, TypesContainer, TypeInfo } from './PokemonDetail.components';
 import CapturePokemonModal from '../modals/CapturePokemonModal.modal';
 import {getPokemonInfo} from '../../state/Requests';
+import addNotification from 'react-push-notification';
+import {toast} from 'react-toastify';
 
 class PokemonDetail extends Component{
 
@@ -36,7 +38,15 @@ class PokemonDetail extends Component{
                     showModal:false,
                     isSuccess:false,
                     warning:null
-                })
+                });
+                addNotification({
+                    title:'Congratulations',
+                    subtitle:'You captured a pokemon',
+                    message:nickname+' is added to \'My Pokemons\'',
+                    theme:'darkblue',
+                    native:true
+                });
+                toast("Congratulations, "+nickname+" is added to \'My Pokemons\'");
             }
         }
     }
@@ -76,7 +86,8 @@ class PokemonDetail extends Component{
         const {pokemonDetail} = this.props;
         const name=_.result(pokemonDetail,'name','');
         const imageUrl = _.result(pokemonDetail,'image','');
-        const types = _.result(pokemonInfo,'types',[]);
+        const types = _.result(pokemonInfo,'types', []);
+        const moves = _.result(pokemonInfo,'moves', []);
         return(
             <div>
                 <CapturePokemonModal show={showModal} name={name} submitSavePokemon={this.submitSavePokemon} warning={warning} isSuccess={isSuccess}/>
@@ -85,15 +96,26 @@ class PokemonDetail extends Component{
                     <CardTitle>
                         {name}
                     </CardTitle>
-                    <div>
+                    <TypesContainer>
+                        Types:
                         {
                             _.map(types, (type) =>
-                                <div>
+                                <TypeInfo>
                                     {_.result(type,'type.name','')}
-                                </div>
+                                </TypeInfo>
                             )
                         }
-                    </div>
+                    </TypesContainer>
+                    <TypesContainer>
+                        Moves: 
+                        {
+                            _.map(moves, (move) =>
+                                <TypeInfo>
+                                    {_.result(move, 'move.name','')}
+                                </TypeInfo>
+                            )
+                        }
+                    </TypesContainer>
                     <Separator/>
                     <CatchButton onClick={()=>this.catchPokemon()}>
                             Catch

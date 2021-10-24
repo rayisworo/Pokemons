@@ -10,21 +10,27 @@ function PokemonPage(){
     const [activeTab, setActiveTab] = useState('PokemonList');
     const [pokemons, setPokemons] = useState({});
     const [pokemonDetail, setPokemonDetail] = useState({});
+    const [show, setShow] = useState(100)
 
     const {loading, data} = useQuery(GET_POKEMONS,{
         variables:{
-            limit:100
+            limit:show
         }
     });
 
     const Tab = (props) => {
         const TabsComponent = Tabs[activeTab] || Tabs['PokemonList'];
-        return <TabsComponent pokemons={pokemons} pokemonDetail={pokemonDetail} {...props} />
+        return <TabsComponent pokemons={pokemons} pokemonDetail={pokemonDetail} handleChangeShow={handleChangeShow} {...props} />
     }
 
     const handleChangeTab = (tabName, pokemonDetail = {}) => { 
         setActiveTab(tabName);
         setPokemonDetail(pokemonDetail);
+    }
+
+    const handleChangeShow = (option) => {
+        const {value} = option;
+        setShow(value);
     }
 
     useEffect(()=>{
