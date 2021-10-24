@@ -10,16 +10,17 @@ function PokemonPage(){
     const [activeTab, setActiveTab] = useState('PokemonList');
     const [pokemons, setPokemons] = useState({});
     const [pokemonDetail, setPokemonDetail] = useState({});
+    const [show, setShow] = useState(100)
 
     const {loading, data} = useQuery(GET_POKEMONS,{
         variables:{
-            limit:10
+            limit:show
         }
     });
 
     const Tab = (props) => {
         const TabsComponent = Tabs[activeTab] || Tabs['PokemonList'];
-        return <TabsComponent pokemons={pokemons} pokemonDetail={pokemonDetail} {...props} />
+        return <TabsComponent pokemons={pokemons} pokemonDetail={pokemonDetail} handleChangeShow={handleChangeShow} {...props} />
     }
 
     const handleChangeTab = (tabName, pokemonDetail = {}) => { 
@@ -27,19 +28,15 @@ function PokemonPage(){
         setPokemonDetail(pokemonDetail);
     }
 
+    const handleChangeShow = (option) => {
+        const {value} = option;
+        setShow(value);
+    }
+
     useEffect(()=>{
         const pokemons = _.result(data,'pokemons.results',[]);
         setPokemons(pokemons);
     }, [data]);
-
-    // const Page = () => {
-    //     return loading ? <Spinner color="blue"/> :
-    //     <PokemonScreen 
-    //         Tab={Tab} 
-    //         handleChangeTab={handleChangeTab}
-    //         activeTab={activeTab}
-    //     />
-    // }
 
     return(
         <div>

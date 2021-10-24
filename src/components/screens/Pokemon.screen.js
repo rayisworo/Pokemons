@@ -7,7 +7,7 @@ class PokemonScreen extends Component{
         return(
             <MainContainer>
                 <MainHeader>
-                    <HeaderImg src='/assets/pokemon-logo.png'/>
+                    <HeaderImg src='/pokemon/assets/pokemon-logo.png'/>
                 </MainHeader>
                 <TabContainer>
                     {
